@@ -11,7 +11,7 @@ public class ArrayDeque<T>{
 
     public ArrayDeque(ArrayDeque other){
         size = other.size();
-        items = (T[]) Object[other.size()]
+        items = (T[]) new Object[other.size()];
         for(int i; i<other.size(); i++){
             addLast((T) other.get(i));
         }
@@ -19,7 +19,7 @@ public class ArrayDeque<T>{
 
     public ArrayDeque(int capacity){
         size=0;
-        items = (T[]) Object[8]
+        items = (T[]) new Object[8];
     }
 
     private int getIndex(int rawIndex){
@@ -36,16 +36,16 @@ public class ArrayDeque<T>{
     public void resize(int newSize){
         T[] newItems = (T[]) new Object[newSize];
         for(int i=0; i<size; i++){
-            newItems[i] = Items[i];
+            newItems[i] = get(i);
         }
         items = newItems;
         nextFirst = items.length-1;
-        newLast = size;
+        nextLast = size;
     }
 
     public void addFirst(T item){
         if (size== items.length){
-            resize(size*RFACTOR)
+            resize(size*RFACTOR);
         }
         items[nextFirst] = item;
         nextFirst = getIndex(nextFirst-1);
@@ -54,7 +54,7 @@ public class ArrayDeque<T>{
 
     public void addLast(T item){
         if (size== items.length){
-            resize(size*RFACTOR)
+            resize(size*RFACTOR);
         }
         items[nextLast] = item;
         nextLast = getIndex(nextLast+1);
@@ -80,15 +80,18 @@ public class ArrayDeque<T>{
         T curLast = items[getIndex(nextLast)];
         items[getIndex(nextLast)] = null;
         size = size-1;
-        return curFirst;
+        return curLast;
     }
 
     public T get(int index){
         if (index>=size){
             return null;
         }
-        return items[getIndex(nextFirst+1+index)]
+        return items[getIndex(nextFirst+1+index)];
     }
 
+    public int size(){
+        return size;
+    }
 
 }

@@ -22,40 +22,40 @@ public class LinkedListDeque<Item>{
     private int size;
     /* constructors */
     public LinkedListDeque(){
-        sentinel = Node();
+        sentinel = new Node();
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
     }
     public LinkedListDeque(LinkedListDeque other){
-        sentinel = Node();
+        sentinel = new Node();
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         for (int i=0; i<other.size; i++){
-            sentinel.
+            addLast((Item) other.get(i));
         }
     }
 
     public void addFirst(Item item){
-        Node itemNode = Node(item, sentinel, sentinel.next);
+        Node itemNode = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = itemNode;
         sentinel.next = itemNode;
         size = size+1;
     }
     public void addLast(Item item){
-        Node itemNode = Node(item, sentinel.prev, sentinel);
+        Node itemNode = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.next = itemNode;
         sentinel.prev = itemNode;
         size = size+1;
     }
     public Item removeFirst(){
-        first = sentinel.next;
+        Node first = sentinel.next;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         size = Math.max(0, size-1);
         return first.item;
     }
     public Item removeLast(){
-        last = sentinel.prev;
+        Node last = sentinel.prev;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
         size = Math.max(0, size-1);
@@ -70,7 +70,7 @@ public class LinkedListDeque<Item>{
         for (int i=0; i<index; i++){
             cur = cur.next;
         }
-        return cur.item
+        return cur.item;
     }
     public Item getRecursive(int index){
         if (index>=size){
@@ -86,6 +86,15 @@ public class LinkedListDeque<Item>{
     }
 
     public int size(){
-        return size
+        return size;
+    }
+
+    public void printDeque() {
+        DequeNode first = sentinel.next;
+        while (first != sentinel) {
+            System.out.print(first.item + " ");
+            first = first.next;
+        }
+        System.out.println();
     }
 }
