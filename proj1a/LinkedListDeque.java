@@ -1,4 +1,4 @@
-public class LinkedListDeque{
+public class LinkedListDeque<Item>{
 
     public class Node{
         public Item item;

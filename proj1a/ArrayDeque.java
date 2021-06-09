@@ -1,4 +1,4 @@
-public class ArrayDeque(){
+public class ArrayDeque<T>{
     private int size;
     private T[] items;
     private int nextFirst=0;
