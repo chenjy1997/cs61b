@@ -12,7 +12,7 @@ public class ArrayDeque<T>{
     public ArrayDeque(ArrayDeque other){
         size = other.size();
         items = (T[]) new Object[other.size()];
-        for(int i; i<other.size(); i++){
+        for(int i=0; i<other.size(); i++){
             addLast((T) other.get(i));
         }
     }

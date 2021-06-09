@@ -90,11 +90,14 @@ public class LinkedListDeque<Item>{
     }
 
     public void printDeque() {
-        DequeNode first = sentinel.next;
+        Node first = sentinel.next;
         while (first != sentinel) {
             System.out.print(first.item + " ");
             first = first.next;
         }
         System.out.println();
+    }
+    public boolean isEmpty(){
+        return size==0;
     }
 }
